@@ -1,6 +1,6 @@
 import { User } from '../models/user.model'
 
-const Header = ({id, username, profilePic}: User) => {
+const Header = ({username, profilePic}: User) => {
       return (
     <div className='flex items-center justify-between'>
         <div className='flex items-center'>
