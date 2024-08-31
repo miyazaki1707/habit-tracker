@@ -13,5 +13,4 @@ const Header = ({username, profilePic}: User) => {
     </div>
   )
 }
-
 export default Header

@@ -1,38 +1,23 @@
-
-import Header from './components/Header'
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import pfp from './assets/pfp.png';
-import { useEffect, useState } from 'react'
-import { User } from './models/user.model';
-import Routine from './components/UI/Routine';
-import HabbitList from './components/UI/HabitList';
-import AddButton from './components/UI/AddButton';
+import HomePage from './pages/Home'
+import CreateHabitPage from './pages/CreateHabit'
+import CreateRoutinePage from './pages/CreateRoutine'
 
 function App() {
-  const [user, setUser] = useState<User>({id: "1", username: "Sora Miyazaki", profilePic:pfp});
-  
-  function getUser(): User { // make it async and get data from telegram api
-  
-    const user: User = {
-      id: "1",
-      username: "Sora Miyazaki",
-      profilePic: pfp
-
-    }
-    return user;
-  }
-
-  useEffect(() => {
-    const user =  getUser(); // make it awake
-    setUser(user);
-  }, [])
-
   return (
-    <div className='App'>
-      <Header id={user.id} username={user.username} profilePic={user.profilePic} ></Header>
-      <Routine></Routine>
-      <HabbitList></HabbitList>
-      <AddButton></AddButton>
+    <div className=''>
+      <Routes>
+        <Route path='/'
+               element={<HomePage />}
+                />
+        <Route path='/create'
+               element={<CreateHabitPage />}
+                />     
+        <Route path='/createroutine'
+              element={<CreateRoutinePage />}
+              />                 
+      </Routes>
     </div>
   )
 }

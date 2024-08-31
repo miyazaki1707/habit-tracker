@@ -1,5 +1,12 @@
 {
   "files": [],
+  "compilerOptions": {
+    "skipLibCheck":true,
+    "typeRoots": [
+      "../node_modules/@types",
+      "../@types"
+    ],
+  },
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
