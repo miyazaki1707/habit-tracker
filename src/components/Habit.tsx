@@ -12,9 +12,9 @@ const Habit = ({habitTitle, habitIcon}: HabitProps) => {
             <img className='p-[13px]' src={habitIcon} alt="" />
             <h2 className='font-medium'>{habitTitle}</h2>
         </div>
-        <a>
+        <button>
             <img className='pr-[20px]' src={arrIcon} alt="" />
-        </a>
+        </button>
     </div>
   )
 }
