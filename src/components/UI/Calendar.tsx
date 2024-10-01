@@ -66,7 +66,7 @@ const CustomCalendar = () => {
   };
 
   return (
-    <div className="w-[100%] mx-auto px-[25px]">
+    <div className="w-[100%] mx-auto px-[25px] mt-[25px]">
       <div className="flex justify-between items-center mb-4">
         <button className='text-[25px]' onClick={handlePreviousMonth}>&lt;</button>
         <h2 className="text-lg font-semibold">{currentDate.format('MMMM YYYY')}</h2>
