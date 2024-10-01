@@ -25,9 +25,6 @@ const CreateHabitPage = () => {
       </div>
       <div className="mt-[40px] mx-[10px]">
         <NotificationsBlock></NotificationsBlock>
-        <div className="mt-[20px]">
-          <h3 className="text-[15px] font-medium">Routines</h3>
-        </div>
       </div>
       <button onClick={e => navigate("/")} className="w-[100%] h-[50px] bg-[#000] text-[#fff] absolute bottom-0 left-0 justify-center font-medium text-[18px] text-center">Create habit</button>
     </div>

@@ -12,8 +12,8 @@ const HabitPage = () => {
       <Calendar></Calendar>
       <DayStreak streak={15} ></DayStreak>
       <h3 className='text-[15px] font-medium mt-[30px] ml-[20px]'>Stats</h3>
-      <div className='mx-[20px] mt-[30px]'>
-        <HabitChart skipped={5} completed={25} ></HabitChart>
+      <div className='text-center'>
+        <HabitChart skipped={5} completed={25}></HabitChart>
       </div>
       <div className="my-[40px] mx-[10px]">
         <NotificationsBlock></NotificationsBlock>
