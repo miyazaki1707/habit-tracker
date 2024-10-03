@@ -14,9 +14,8 @@ function App() {
         <Route path='/create'
           element={<CreateHabitPage />}
         />
-        <Route path='/habit'
-          element={<HabitPage />}
-        />
+        <Route path='/habit/:habbitId' element={<HabitPage />}>
+        </Route>
       </Routes>
     </div>
   )

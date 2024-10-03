@@ -3,23 +3,43 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/en'; // Ensure dayjs uses the correct locale for dates
 import classNames from 'classnames';
 
-const CustomCalendar = () => {
+interface calendarProps {
+  date: string
+}
+
+const CustomCalendar = ({ dates }: any) => {
   const [currentDate, setCurrentDate] = useState(dayjs());
   const [completedDates, setCompletedDates] = useState<string[]>([]);
+  const [failedDates, setFailedDates] = useState<string[]>([]);
+
 
   useEffect(() => {
-    // Example: Load completed dates from local storage or a backend (Firebase, etc.)
-    const savedCompletedDates = JSON.parse(localStorage.getItem('completedDates') || '[]');
-    setCompletedDates(savedCompletedDates);
+    const parsedCompletedDates: any = [];
+    const parsedFailedDates: any = [];
+
+    dates.map((el: any) => {
+      if (Object.values(el)[0] == "completed") {
+        parsedCompletedDates.push(Object.keys(el)[0]);
+      } else {
+        parsedFailedDates.push(Object.keys(el)[0]);
+      }
+    })
+
+    setCompletedDates(parsedCompletedDates);
+    setFailedDates(parsedFailedDates);
   }, []);
 
   const daysInMonth = currentDate.daysInMonth();
   const startDayOfWeek = currentDate.startOf('month').day();
-  
+
   const handleDayClick = (day: number) => {
     const dateStr = currentDate.date(day).format('YYYY-MM-DD');
-    if (completedDates.includes(dateStr)) {
+    if (failedDates.includes(dateStr)) {
+      setFailedDates(failedDates.filter(date => date !== dateStr));
+    }
+    else if (completedDates.includes(dateStr)) {
       setCompletedDates(completedDates.filter(date => date !== dateStr));
+      setFailedDates([...failedDates, dateStr]);
     } else {
       setCompletedDates([...completedDates, dateStr]);
     }
@@ -32,6 +52,12 @@ const CustomCalendar = () => {
     return completedDates.includes(dateStr);
   };
 
+  const isFailed = (day: number) => {
+    const dateStr = currentDate.date(day).format('YYYY-MM-DD');
+    return failedDates.includes(dateStr);
+  };
+
+
   const renderDays = () => {
     const days = [];
     for (let i = 1; i <= daysInMonth + startDayOfWeek; i++) {
@@ -42,7 +68,7 @@ const CustomCalendar = () => {
             key={i}
             className={classNames(
               'flex justify-center items-center cursor-pointer w-10 h-10 m-auto rounded-full',
-              isCompleted(day) ? 'bg-green-500 text-white' : 'bg-white',
+              isCompleted(day) ? 'bg-green-500 text-white' : isFailed(day) ? 'bg-red-500 text-white' : 'bg-white',
               'hover:bg-gray-300'
             )}
             onClick={() => handleDayClick(day)}

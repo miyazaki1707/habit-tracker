@@ -24,7 +24,7 @@ const CreateHabitPage = () => {
         <input className="outline-none ml-[14px] text-[16px]" type="text" placeholder="New habit" value={habitName} onChange={e => setHabitName(e.target.value)} />
       </div>
       <div className="mt-[40px] mx-[10px]">
-        <NotificationsBlock></NotificationsBlock>
+        <NotificationsBlock notificationTime={""} notificationsDays={[]}></NotificationsBlock>
       </div>
       <button onClick={e => navigate("/")} className="w-[100%] h-[50px] bg-[#000] text-[#fff] absolute bottom-0 left-0 justify-center font-medium text-[18px] text-center">Create habit</button>
     </div>

@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 interface TimePickerProps {
   step?: number;
   onTimeSelect?: (time: string) => void;
+  time: string
 }
 
-const TimePicker: React.FC<TimePickerProps> = ({ step = 10, onTimeSelect }) => {
+const TimePicker: React.FC<TimePickerProps> = ({ step = 10, onTimeSelect, time }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const [selectedTime, setSelectedTime] = useState<string | null>(time);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
   const startMinutes = 5 * 60;
@@ -30,21 +31,21 @@ const TimePicker: React.FC<TimePickerProps> = ({ step = 10, onTimeSelect }) => {
     <div className="relative inline-block">
       <button
         onClick={toggleDropdown}
-        className=" text-black bg-[#fff] rounded-md  focus:outline-none font-medium text-[15px]"
+        className="text-black bg-[#fff] rounded-md focus:outline-none font-medium text-[15px]"
       >
         {selectedTime || 'Select Time'}
       </button>
       {isOpen && (
         <ul
-          className="absolute w-[100px] left-0 right-0 z-10 max-h-48 overflow-y-auto bg-white border border-gray-300 rounded-md shadow-lg"
+          className="absolute left-0 z-50 max-h-48 overflow-y-auto bg-white border border-gray-300 rounded-md shadow-lg"
+          style={{ maxWidth: '200px', overflowX: 'hidden', bottom: '100%' }}
         >
           {times.map((time) => (
             <li
               key={time}
               onClick={() => handleTimeSelect(time)}
-              className={`px-4 py-2 cursor-pointer hover:bg-gray-200 ${
-                selectedTime === time ? 'bg-gray-100' : ''
-              }`}
+              className={`px-4 py-2 cursor-pointer hover:bg-gray-200 ${selectedTime === time ? 'bg-gray-100' : ''
+                }`}
             >
               {time}
             </li>
